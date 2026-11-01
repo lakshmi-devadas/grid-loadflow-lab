@@ -1,0 +1,47 @@
+# Claude inside GitHub: mention @claude in an issue or PR comment and it reads the repo,
+# answers, or opens a pull request with the change.
+#
+# Setup (once per repo):
+#   1. Install the Claude GitHub App: https://github.com/apps/claude
+#   2. Add ONE secret under Settings → Secrets and variables → Actions:
+#        ANTHROPIC_API_KEY        (pay-per-use, from console.anthropic.com)
+#      or CLAUDE_CODE_OAUTH_TOKEN (uses your Claude Pro/Max plan; generate with `claude setup-token`)
+#   3. Copy this file to .github/workflows/claude.yml in each project repo.
+#
+# Claude never merges anything — it opens PRs; you review and merge.
+
+name: Claude
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  id-token: write
+
+jobs:
+  claude:
+    # Only respond when @claude is mentioned, and only to you (the repo owner)
+    if: >
+      contains(github.event.comment.body || github.event.issue.body, '@claude') &&
+      (github.event.comment.user.login || github.event.issue.user.login) == github.repository_owner
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          # Use whichever secret you created; delete the other line.
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: "--max-turns 10"

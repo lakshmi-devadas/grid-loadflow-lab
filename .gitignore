@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+.DS_Store
+~$*.xlsx
+# Results are committed for case14 only (shown in the README); ignore everything else
+results/*
+!results/case14_n1_report.xlsx
+!results/case14_n1_loading.png
