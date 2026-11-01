@@ -1,6 +1,6 @@
 # grid-loadflow-lab ⚡
 
-![Tests](https://github.com/YOUR-USERNAME/grid-loadflow-lab/actions/workflows/tests.yml/badge.svg)
+![Tests](https://github.com/lakshmi-devadas/grid-loadflow-lab/actions/workflows/tests.yml/badge.svg)
 
 **Automated N-1 contingency screening for IEEE test systems, in Python.**
 Takes every line and transformer out of service one at a time, re-runs the AC load flow, and reports thermal overloads, voltage violations, islanding and non-convergence — in an Excel workbook and a chart.
@@ -53,7 +53,7 @@ The same three outages (Lines 2–3, 1–2 and Transformer 5–6) violate in eve
 ## Run it
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/grid-loadflow-lab.git
+git clone https://github.com/lakshmi-devadas/grid-loadflow-lab.git
 cd grid-loadflow-lab
 pip install -r requirements.txt
 
