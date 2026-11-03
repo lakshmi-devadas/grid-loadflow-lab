@@ -86,13 +86,9 @@ tests/              7 tests, including known IEEE 14-bus behaviour
 - Bus numbers follow the **IEEE 1-based convention**, so results match published single-line diagrams. pandapower uses 0-based indices internally.
 
 ## What I learned
-<!--- **Test cases aren't study-ready.** pandapower's IEEE cases carry placeholder ratings (42 kA lines, 9,900 MVA transformers), so every branch read ~1% loaded. I had to set an explicit rating assumption — and the results swung from 18 violations to 3 depending on it. Lesson: always state the ratings basis before quoting N-1 results.
+- **Test cases aren't study-ready.** pandapower's IEEE cases carry placeholder ratings (42 kA lines, 9,900 MVA transformers), so every branch read ~1% loaded. I had to set an explicit rating assumption — and the results swung from 18 violations to 3 depending on it. Lesson: always state the ratings basis before quoting N-1 results.
 - **Topology matters before load flow.** Transformer 7–8 is the only path to bus 8 (synchronous condenser), so losing it islands the bus and removes reactive support there. I check islanding first so it isn't misreported as a voltage violation.
-- **What broke:** <one real thing that confused you or failed, and how you fixed it>
-<!-- Write this in your own words. It is the part of the README people actually read. Prompts: -->
-<!-- - What surprised you about the missing ratings, and how you decided on the assumption -->
-<!-- - Why bus 8 islands, and what losing a synchronous condenser means for voltage support -->
-<!-- - Something that broke and how you fixed it -->
+- **What broke:** My first push failed because I pasted PowerShell commands into a Git Bash terminal. I switched to Git GUI to add the remote and push. Later a GitHub Action failed with "rejected (fetch first)" because the bot had already pushed a newer commit; adding `git pull --rebase` before `git push` fixed it.
 
 ## Roadmap
 
